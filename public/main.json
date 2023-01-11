@@ -1,0 +1,44 @@
+[
+  {
+    "image": "1.jpg",
+    "name": "Ford GT 'LM Edition'",
+    "price": 500000,
+    "article": "T1",
+    "available": true
+  },
+  {
+    "image": "2.jpg",
+    "name": "Bugatti W16 Mistral",
+    "price": 200000,
+    "article": "T2",
+    "available": true
+  },
+  {
+    "image": "3.jpg",
+    "name": "Ferrari SF90 Spider",
+    "price": 7231233,
+    "article": "T3",
+    "available": false
+  },
+  {
+    "image": "4.jpg",
+    "name": "Maserati Levante FTributo",
+    "price": 800000,
+    "article": "T4",
+    "available": true
+  },
+  {
+    "image": "5.jpg",
+    "name": "Toyota Crown Sport Prototype",
+    "price": 650000,
+    "article": "T5",
+    "available": true
+  },
+  {
+    "image": "6.jpg",
+    "name": "Toyota GR Supra GT4 EVO",
+    "price": 1000000,
+    "article": "T6",
+    "available": true
+  }
+]

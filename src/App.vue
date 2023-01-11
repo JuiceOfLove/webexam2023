@@ -6,6 +6,7 @@
       <nav class="navbar">
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
+        <a href="https://github.com/VacationForever/webexam2023" target="__blank">GitHub</a>
         <router-link :to="{path: 'cart'}">Cart: 0</router-link>
         <div @click="darkmode" class="bx bx-moon" id="darkmode"></div>
       </nav>
