@@ -4,6 +4,7 @@
     "name": "Ford GT 'LM Edition'",
     "price": 500000,
     "article": "T1",
+    "category": "Sport",
     "available": true
   },
   {
@@ -11,6 +12,7 @@
     "name": "Bugatti W16 Mistral",
     "price": 200000,
     "article": "T2",
+    "category": "Luxury",
     "available": true
   },
   {
@@ -18,6 +20,7 @@
     "name": "Ferrari SF90 Spider",
     "price": 7231233,
     "article": "T3",
+    "category": "Sport",
     "available": false
   },
   {
@@ -25,13 +28,15 @@
     "name": "Maserati Levante FTributo",
     "price": 800000,
     "article": "T4",
+    "category": "Luxury",
     "available": true
   },
   {
     "image": "5.jpg",
-    "name": "Toyota Crown Sport Prototype",
+    "name": "Toyota Crown Sport",
     "price": 650000,
     "article": "T5",
+    "category": "Luxury",
     "available": true
   },
   {
@@ -39,6 +44,7 @@
     "name": "Toyota GR Supra GT4 EVO",
     "price": 1000000,
     "article": "T6",
+    "category": "Luxury",
     "available": true
   }
 ]

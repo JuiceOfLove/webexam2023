@@ -6,8 +6,10 @@
       <nav class="navbar">
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
+
+        <router-link :to="{path: 'cart'}">Cart: {{CART.length}}</router-link>
         <a href="https://github.com/VacationForever/webexam2023" target="__blank">GitHub</a>
-        <router-link :to="{path: 'cart'}">Cart: 0</router-link>
+        <a href="https://raw.githubusercontent.com/VacationForever/webexam2023/main/public/main.json" target="__blank">Json</a>
         <div @click="darkmode" class="bx bx-moon" id="darkmode"></div>
       </nav>
     </header>
@@ -18,7 +20,6 @@
 </template>
 
 <script>
-  // let navbar = document.querySelector(".navbar");
   import {mapGetters} from 'vuex';
 
   export default {
@@ -37,6 +38,11 @@
         }
       },
     },
+     computed: {
+    ...mapGetters([
+      'CART'
+    ]),
+  },
   }
 </script>
 
