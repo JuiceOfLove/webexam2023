@@ -2,16 +2,20 @@
   <div class="home">
     <div class="catalog__top">
       <h1 class="logo">Каталог</h1>
-       <span @click="sortByName" class="a-table__header-title">Name<i class='bx bx-move-vertical'></i></span>
-       <span @click="sortByCost" class="a-table__header-title">Cost<i class='bx bx-move-vertical'></i></span>
-       <div class="search-field">
-      <input
-          type="text"
-          v-model="searchValue"
-      >
-        <i class="bx bx-search-alt-2" @click="search(searchValue)"></i>
-        <i class='bx bx-x' @click="clearSearchField"></i>
-    </div>
+       <div class="catalog__widgets">
+         <div class="catalog__widgets-items">
+           <span @click="sortByName" class="a-table__header-title">Name<i class='bx bx-move-vertical'></i></span>
+           <span @click="sortByCost" class="a-table__header-title">Cost<i class='bx bx-move-vertical'></i></span>
+         </div>
+         <div class="search-field">
+          <input
+              type="text"
+              v-model="searchValue"
+          >
+            <i class="bx bx-search-alt-2" @click="search(searchValue)"></i>
+            <i class='bx bx-x' @click="clearSearchField"></i>
+               </div>
+       </div>
     </div>
     <div class="catalog">
       <CatalogItem
@@ -151,5 +155,20 @@ export default {
    justify-content: space-around;
    align-items: center;
  }
+
+ .catalog__widgets{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+ }
+
+.bx-search-alt-2 {
+  margin-left: 5px;
+  font-size: 22px;
+}
+
+.bx-x {
+  font-size: 22px;
+}
 
 </style>

@@ -5,11 +5,11 @@
       <div @click="menu" class="bx bx-menu" id="menu-icon"></div>
       <nav class="navbar">
         <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-
+        <router-link to="/form">Form</router-link>
         <router-link :to="{path: 'cart'}">Cart: {{CART.length}}</router-link>
         <a href="https://github.com/VacationForever/webexam2023" target="__blank">GitHub</a>
         <a href="https://raw.githubusercontent.com/VacationForever/webexam2023/main/public/main.json" target="__blank">Json</a>
+        <a href="#" class='bx bx-face' id="face"></a>
         <div @click="darkmode" class="bx bx-moon" id="darkmode"></div>
       </nav>
     </header>
@@ -112,6 +112,10 @@ header {
  }
 
  #darkmode {
+  font-size: 22px;
+  cursor: pointer;
+ }
+ #face {
   font-size: 22px;
   cursor: pointer;
  }

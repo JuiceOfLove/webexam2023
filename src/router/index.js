@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from '../pages/MainPage.vue'
-import AboutView from '../pages/AboutView.vue'
+import FormPage from '../pages/FormPage.vue'
 import CartPage from '../pages/CartPage.vue'
 
 Vue.use(VueRouter)
@@ -13,9 +13,9 @@ const routes = [
     component: MainPage
   },
   {
-    path: '/about',
-    name: 'about',
-    component: AboutView
+    path: '/form',
+    name: 'form',
+    component: FormPage
   },
   {
     path: '/cart',
