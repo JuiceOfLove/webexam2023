@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+		<title>Main</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
+
+        <style>
+            /* ---------- Browser normalization ---------- */
+            article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+                display: block;
+            }
+            body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                clear: both;
+            }
+            fieldset, img {
+                border: 0;
+            }
+            address, caption, cite, code, dfn, th, var {
+                font-style: normal;
+                font-weight: normal;
+            }
+            caption, th {
+                text-align: left;
+            }
+            q:before, q:after {
+                content: '';
+            }
+            abbr, acronym {
+                border: 0;
+                border-bottom: 1px dotted #000;
+                cursor: help;
+            }
+            html {
+                overflow-y: scroll;
+            }
+            body {
+                background: #FFF;
+                font: 62.5%/1.4 Arial, sans-serif;
+            }
+            blockquote, ul, ol, dl {
+                margin: 1em;
+            }
+            ol, ul, dl {
+                margin-left: 2em;
+            }
+            ol {
+                list-style: decimal outside;
+            }
+            ul {
+                list-style: disc outside;
+            }
+            ul ul {
+                list-style-type: circle;
+            }
+            ol ol {
+                list-style-type: upper-roman;
+            }
+            dl dd {
+                margin-left: 1em;
+            }
+            th {
+                font-weight: bold;
+            }
+            caption {
+                margin-bottom: 0.5em;
+                text-align: center;
+            }
+            p {
+                margin-bottom: 1em;
+            }
+            /* Liferay BMW Intranet COMA WUI CSS
+            * Version: 2.1
+            * Date: 2017-01*/
+
+
+            @font-face {
+            font-family: BMWGroupTNCondensedProTT-Bold;
+
+            src: url("/fonts/BMWGroupTNCondensedProTT-Bold.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedProTT-Regular;
+
+            src: url("/fonts/BMWGroupTNCondensedProTT-Regular.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedProTT-Light;
+
+            src: url("/fonts/BMWGroupTNCondensedProTT-Light.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedProTT-Thin;
+
+            src: url("/fonts/BMWGroupTNCondensedProTT-Thin.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNTT-Bold;
+
+            src: url("/fonts/BMWGroupTNTT-Bold.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNTT-Light;
+
+            src: url("/fonts/BMWGroupTNTT-Light.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNTT-Regular;
+
+            src: url("/fonts/BMWGroupTNTT-Regular.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNTT-Thin;
+
+            src: url("/fonts/BMWGroupTNTT-Thin.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedTT-Bold;
+
+            src: url("/fonts/BMWGroupTNCondensedTT-Bold.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedTT-Light;
+
+            src: url("/fonts/BMWGroupTNCondensedTT-Light.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedTT-Regular;
+
+            src: url("/fonts/BMWGroupTNCondensedTT-Regular.ttf") format("truetype");
+            }
+
+            @font-face {
+            font-family: BMWGroupTNCondensedTT-Thin;
+
+            src: url("/fonts/BMWGroupTNCondensedTT-Thin.ttf") format("truetype");
+            }
+            html {
+                box-sizing: border-box;
+            }
+            *, *:before, *:after {
+                box-sizing: inherit;
+            }
+            body {
+                background-color: white;
+                color: black;
+                font-size: 14px;
+                max-width: 1800px;
+                height: 100%;
+
+            }
+            .page-wrap {
+                width: 100%;
+                overflow: hidden;
+                margin: 0 auto;
+                position: relative;
+            }
+            .header-complete {
+                position: fixed;
+                background-color: white;
+                width: 100%;
+                top: 0;
+                z-index: 999;
+                height: 120px;
+                min-width: initial;
+            }
+            .header-top {
+                margin: 20px 13px;
+                min-width: 934px;
+                background: url(/img/BMWGroupNext_BMW_MINI_RR_GB_Grey-Colour_RGB_195.png) no-repeat left center;
+                background-size: 210px 25px;
+                height: 25px;
+
+                position: relative;
+            }
+            @media only screen and (min--moz-device-pixel-ratio: 2),
+            only screen and (-o-min-device-pixel-ratio: 2/1),
+            only screen and (-webkit-min-device-pixel-ratio: 2),
+            only screen and (min-device-pixel-ratio: 2) {
+                .header-top {
+                    background: url(../images/wui/BMWGroupNext_BMW_MINI_RR_GB_Grey-Colour_RGBKopie.png) no-repeat left center;
+                    background-size: 210px 25px;
+                }
+            }
+            .pagetitle {
+                position: absolute;
+                top: 0;
+                left: 233px;
+                font-family: BMWGroupTNCondensedTT-Regular, sans-serif;
+                font-size: 33px;
+                line-height: 26px;
+                color: #444444;
+            }
+            .content-headlines {
+                padding-top: 11px;
+                padding-bottom: 7px;
+            }
+            .content-headlines .content-headline {
+                margin: 0;
+                font-size: 16px;
+                line-height: 18px;
+                color: #666666;
+                font-weight: bold;
+            }
+            .content-headlines .content-sub-headline {
+                margin: 0;
+                font-size: 16px;
+                line-height: 18px;
+                color: #666666;
+                font-weight: normal;
+            }
+            .nav-meta {
+                height: 25px;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            .nav-meta .nav-meta-menu {
+                list-style-type: none;
+                margin: 0;
+            }
+            .nav-meta .nav-meta-menu-item {
+                display: block;
+                float: left;
+                height: 25px;
+                width: 24px;
+                position: relative;
+                margin-left: 7px;
+            }
+            .nav-meta .nav-meta-menu-item:first-child {
+                margin-left: 0;
+            }
+            .nav-meta .nav-meta-menu-item:first-child:before {
+                content: none;
+
+            }
+            .nav-meta .nav-meta-menu-item > a {
+                height: 25px;
+                width: 24px;
+                display: block;
+                float: left;
+            }
+            .nav-meta .email > a {
+                background: url(../images/wui/icons/nav/mail.png) center no-repeat;
+            background-size: 23px 21px;
+            color: #494949;
+            }
+            .nav-meta .email > a:hover {
+                background: url(../images/wui/icons/nav/mail_hover.png) center no-repeat;
+            background-size: 23px 21px;
+            color: #494949;
+            }
+            .nav-meta .language {
+                width: 48px;
+                    font-family: 'BMWGroupTNCondensedTT-Regular';color: red;
+            }
+            .nav-meta .language .dropdown-trigger {
+                background: transparent url(/img/arrow_down.png) no-repeat right;
+                color: #494949;
+                font-size: 17px;
+                padding-top: 2px;
+                padding-left: 2px;
+                text-decoration: none;
+                width: 49px;
+                background-size: 23px 21px;
+            }
+            .nav-meta .language .dropdown-trigger:hover {
+                background: transparent url(/img/arrow_down_hover.png) no-repeat right;
+
+                color: #494949;
+                background-size: 23px 21px;
+            }
+            .nav-meta .language .dropdown-trigger.open {
+                background: #ececec url(/img/arrow_up.png) no-repeat right;background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .language .dropdown-trigger.open:hover {
+                background: #ececec url(/img/arrow_up_hover.png) no-repeat right;
+                color: #494949;
+                background-size: 23px 21px;
+            }
+            .nav-meta .language .dropdown {
+                min-width: 49px;
+                position: absolute;
+                top: 100%;
+                right: -1px;
+                z-index: 1000;
+                display: none;
+                padding: 5px 0;
+                text-align: left;
+                background-color: white;
+                border: 1px solid #ececec;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+            }
+            .nav-meta .language .dropdown .taglib-language-list-text {
+                border: 0;
+                padding: 0 0.2em;
+                clear: both;
+            color: #494949;
+                font-size: 17px;
+                text-decoration: none;
+                float: left;
+            }
+            .nav-meta .language .dropdown .taglib-language-list-text:hover {
+                color: #040404;
+            }
+            .nav-meta .logout > a {
+                background: url(/img/logout.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .logout > a:hover {
+                background: url(/img/logout_hover.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .help > a {
+                background: url(../images/wui/icons/nav/help.png) center no-repeat;
+                background-size: 23px 21px;;color: #494949;
+            }
+            .nav-meta .help > a:hover {
+                background: url(../images/wui/icons/nav/help_hover.png) center no-repeat;
+            background-size: 23px 21px;;color: #494949;
+            }
+            .nav-meta .settings > a {
+                background: url(/img/settings.svg) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .settings > a:hover {
+                background: url(/img/settings_hover.svg) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .info > a {
+                background: url(../images/wui/icons/nav/info.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .info > a:hover {
+                background: url(../images/wui/icons/nav/info_hover.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .phone > a {
+                background: url(../images/wui/icons/nav/phone.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .phone > a:hover {
+                background: url(../images/wui/icons/nav/phone_hover.png) center no-repeat;
+                background-size: 23px 21px;color: #494949;
+            }
+            .nav-meta .pen > a {
+                background: url(../images/wui/icons/nav/pen.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .pen > a:hover {
+                background: url(../images/wui/icons/nav/pen_hover.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .dropdown-trigger {
+                background: url(../images/wui/icons/nav/search.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .dropdown-trigger:hover {
+                background: url(../images/wui/icons/nav/search_hover.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .dropdown-trigger.open {
+                background: #ececec url(../images/wui/icons/nav/close.png) no-repeat center;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .dropdown-trigger.open:hover {
+                background: #ececec url(../images/wui/icons/nav/close_hover.png) no-repeat center;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .dropdown {
+                min-width: 246px;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                z-index: 1000;
+                display: none;
+                padding: 5px 5px 0 5px;
+                text-align: left;
+                background-color: white;
+                border: 1px solid #ececec;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+            }
+            .nav-meta .menu > a {
+                background: transparent url(/img/menu.png) center no-repeat;
+                color: #494949;
+                background-size: 23px 21px;
+            }
+            .nav-meta .menu > a:hover {
+                background: transparent url(/img/menu_hover.png) center no-repeat;
+                color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-meta .menu > a.open {
+                background: #ececec url(/img/close.png) center no-repeat;
+                color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-meta .menu > a.open:hover {
+                background: #ececec url(/img/close_hover.png) center no-repeat;
+                color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-meta .search input[type="search"] {
+                border: 1px solid #999999;
+                padding: 2px 3px;
+                margin-bottom: 4px;
+                outline: 0;
+                background: white none;
+                box-shadow: inset 1px 1px 3px rgba(0,0,0,0.175);
+                height: 21px;
+            }
+            .nav-meta .search select {
+                background: none;
+                border: 1px solid #999999;
+                height: 21px;
+                margin-bottom: 4px;
+                width: inherit !important;
+                box-shadow: inset 1px 1px 3px rgba(0,0,0,0.175);
+                vertical-align: top;
+            }
+            .nav-meta .search select option {
+                padding-top: 1px;
+                padding-bottom: 2px;
+            }
+            .nav-meta .search .global-search-form {
+                display: flex;
+            }
+            .nav-meta .search .global-search-submit-button {
+                background: url(../images/wui/icons/nav/search.png) center no-repeat;
+                width: 30px;
+                padding-left: 5px;
+                border: 0;
+                height: 21px;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-meta .search .global-search-submit-button:hover {
+                background: url(../images/wui/icons/nav/search_hover.png) center no-repeat;
+            background-size: 23px 21px;
+            color: #494949;
+            }
+            .nav-meta .search .global-search-input {
+                margin-right: 5px;
+                font-size: 12px;
+                font-weight: normal;
+                height: 21px;
+                color: #999999;
+                width: 145px;
+            }
+            .nav-meta .search .global-search-input:focus	{
+                color: black;
+            }
+            .nav-meta .search .wui-search-string {
+                font-weight: bold;
+            }
+            .nav-resp {
+                font-family: BMWGroupTNCondensedTT-Regular, sans-serif;
+                float: left;
+                width: 233px;
+                position: absolute;
+                z-index: 1000;
+                display: none;
+                text-align: left;
+                background-color: white;
+                border: 1px solid #ececec;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+                top: 100%;
+                right: 0;
+            }
+            .nav-resp > ul > li {
+                padding-left: 2px !important;
+            }
+            .nav-resp ul {
+                list-style-type: none;
+                display: none;
+                margin: 0;
+            }
+            .nav-resp ul.open {
+                display: block;
+            }
+            .nav-resp li {
+                display: block;
+                float: left;
+                padding-left: 10px;
+                padding-top: 4px;
+                width: 100%;
+            }
+            .nav-resp li.active > .nav-link {
+                font-weight: bold;
+                color: #92a2bd;
+            }
+            .nav-resp li.open,
+            .nav-resp li.open > ul {
+                display: block;
+            }
+            .nav-resp li.open.has-children {
+                background-color: #ececec;
+            }
+            .nav-resp a {
+                float: left;
+                color: black;
+                text-decoration: none;
+                display: block;
+                min-height: 25px;
+                vertical-align: middle;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                padding-right: 36px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                max-height: 36px;
+            }
+            .nav-resp a.nav-link {
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .nav-resp a.nav-button {
+                width: 30px;
+                padding-left: 3px;
+                padding-right: 3px;
+                position: absolute;
+                right: 0;
+                height: 25px;
+                border: 0;
+            }
+            .nav-resp .has-children > .nav-button {
+                background: transparent url(/img/arrow_down.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-resp .has-children > .nav-button:hover {
+                background: transparent url(/img/arrow_down_hover.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-resp .has-children.open > .nav-button {
+                background: transparent url(/img/arrow_up.png) center no-repeat;
+                background-size: 23px 21px;
+                color: #494949;
+            }
+            .nav-resp .has-children.open > .nav-button:hover {
+                background: transparent url(/img/arrow_up_hover.png) center no-repeat;
+                background-size: 23px 21px;
+                    color: #494949;
+
+            }
+            .nav-top {
+                font-family: BMWGroupTNCondensedTT-Regular;
+                height: 25px;
+                min-width: 934px;
+                padding-top: 17px;
+                padding-bottom: 0;
+                margin: 0 13px;
+                color: #494949;
+                Font-size: 13px;
+
+            }
+            .no-header .nav-top {
+                margin: 0;
+                padding-top: 5px;
+            }
+            .nav-top ul {
+                height: 25px;
+                width: 100%;
+                list-style-type: none;
+                margin: 0;
+            }
+            .nav-top li {
+                display: block;
+                height: 25px;
+                margin-right: 5px;
+                border-bottom: 5px solid #d6d6d6;
+            }
+            .nav-top li.active {
+                border-bottom: 5px solid #035970;
+                color: black;
+                padding-bottom: 5px;
+            }
+            .nav-top li.last {
+                min-width: 7px;
+                float: none;
+                margin-right: 0;
+            }
+            .nav-top a {
+                color: #444444;
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                width: 130px;
+            }
+            .nav-top a:hover {
+                color: black;
+            }
+            .nav-top li,
+            .nav-top a {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                float: left;
+            }
+            .nav-top li:first-child a {
+                    width: 228px;
+            }
+            .content-complete {
+                height: 100%;
+                float: left;
+                width: 100%;
+            }
+            .nav-left {
+                font-family: BMWGroupTNCondensedTT-Regular;
+                float: left;
+                padding-left: 13px;
+                width: 233px;
+                text-align: left;
+                background-color: white;
+                line-height: 18 px;
+                font-size: 13 px;
+            }
+            .no-header .nav-left {
+                padding-left: 0;
+                width: 220px;
+            }
+            .nav-left > ul > li {
+                padding-left: 2px !important;
+            }
+            .nav-left ul {
+                list-style-type: none;
+                display: none;
+                margin: 0px;
+            }
+            .nav-left ul.open {
+                display: block;
+            }
+            .nav-left li {
+                display: block;
+                float: left;
+                padding-left: 10px;
+                padding-top: 4px;
+                width: 100%;
+            }
+            .nav-left li.active > .nav-link {
+                font-weight: bold;
+                color: #035970;
+            }
+            .nav-left li.open,
+            .nav-left li.open > ul {
+                display: block;
+            }
+            .nav-left a {
+                float: left;
+                color: #000000;
+                text-decoration: none;
+                display: block;
+                min-height: 25px;
+                vertical-align: middle;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                padding-right: 36px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+
+            }
+            .nav-left a.nav-link {
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .nav-left a.nav-button {
+                width: 30px;
+                padding-left: 3px;
+                padding-right: 3px;
+                position: absolute;
+                left: 196px;
+                height: 25px;
+                border: 0;
+            }
+            .no-header .nav-left a.nav-button  {
+                left: 183px;
+            }
+            .nav-left .has-children > .nav-button {
+                background: transparent url(/img/arrow_down.png) center no-repeat;
+                    color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-left .has-children > .nav-button:hover {
+                background: transparent url(/img/arrow_down_hover.png) center no-repeat;
+                    color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-left .has-children.open > .nav-button {
+                background: transparent url(/img/arrow_up.png) center no-repeat;
+                    color: #494949;
+            background-size: 23px 21px;
+            }
+            .nav-left .has-children.open > .nav-button:hover {
+                background: transparent url(/img/arrow_up_hover.png) center no-repeat;
+                    color: #494949;
+            background-size: 23px 21px;
+            }
+            .wui-separator {
+                width: 1px;
+                background-color: #ececec;
+                position: fixed;
+                top: 156px;
+                bottom: 0;
+                z-index: 998;
+            }
+            .no-header .wui-separator {
+                top: 66px;
+            }
+            table {
+                border: 0;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            th,
+            td {
+                padding: 2px 3px;
+                text-align: left;
+                margin: 0;
+                vertical-align: top;
+                line-height: 14px;
+                color: black;
+            }
+            th {
+                font-weight: bold;
+                background-color: white;
+            }
+            table.zebra tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            table.data,
+            table.data[border="1"] th,
+            table.data[border="1"] td {
+                border: 0;
+            }
+            table.data th {
+                border: 0;
+                border-left: 1px solid white !important;
+                border-bottom: 1px solid #666666 !important;
+                padding: 2px 6px;
+            }
+            table.data td {
+                border: 0;
+                border-left: 1px solid white !important;
+                padding: 3px 7px;
+            }
+            table[border="0"] th,
+            table[border="0"] td {
+                border: 0;
+            }
+            table[border="1"] th,
+            table[border="1"] td {
+                border: 1px solid black;
+            }
+            .content-area {
+                padding-right: 13px;
+            }
+            .no-header  .content-area {
+                padding-right: 0;
+            }
+            .content-area .content a {
+                color: black;
+                text-decoration: underline;
+            }
+            .content-area .content input[type="text"],
+            .content-area .content input[type="password"],
+            .content-area .content input[type="search"],
+            .content-area .content textarea {
+                border: 1px solid #999999;
+                padding: 2px 3px;
+                margin-bottom: 4px;
+                outline: 0;
+                background: white none;
+                box-shadow: inset 1px 1px 3px rgba(0,0,0,0.175);
+                height: 21px;
+            }
+            .content-area .content input[type="text"]:disabled,
+            .content-area .content input[type="password"]:disabled,
+            .content-area .content input[type="search"]:disabled,
+            .content-area .content textarea:disabled {
+                color: #999999;
+            }
+            .content-area .content input[type="radio"] {
+                margin-left: 1px;
+            }
+            .content-area .content select {
+                background: none;
+                border: 1px solid #999999;
+                height: 21px;
+                margin-bottom: 4px;
+                width: inherit !important;
+                box-shadow: inset 1px 1px 3px rgba(0,0,0,0.175);
+            }
+            .content-area .content select option {
+                padding-top: 1px;
+                padding-bottom: 2px;
+            }
+            .content-area .content .wui-container {
+                line-height: 18px;
+                border: 0 none;
+                background-color: white;
+                margin-bottom: 7px;
+            }
+            .content-area .content .wui-container:before {
+                content: " ";
+                display: block;
+                height: 6px;
+
+                background-color: #d6d6d6;
+                margin-top: 7px;
+                margin-bottom: 15px;
+            }
+            .content-area .content .wui-layout-row:first-child .wui-container:first-child:before {
+                margin-top: 0;
+            }
+            .content-area .content h1,
+            .content-area .content h2,
+            .content-area .content h3,
+            .content-area .content h4 {
+                margin: 0;
+                padding: 0;
+            }
+            .content-area .content h1 {
+                font-size: 16px;
+                font-weight: normal;
+                line-height: 18px;
+                color: #494949;
+            }
+
+
+
+            .content-area .content h3 {
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: bold;
+                color: #494949;
+            }
+            .content-area .content h4 {
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: bold;
+                color: #494949;
+            }
+            footer {
+                font-family: BMWGroupTNTT-Regular;
+                color: #494949;
+                padding-top: 7px;
+                padding-bottom: 7px;
+            }
+            footer a,
+            footer a:visited {
+                color: #494949;
+                text-decoration: none;
+            }
+            footer a:hover,
+            footer a:visited:hover {
+                text-decoration: underline;
+            }
+            footer .footer-copyright {
+                font-size: 11px;
+                line-height: 13px;
+            }
+            .clear {
+                clear: both;
+            }
+            .clearfix:after {
+                content: ".";
+                clear: both;
+                display: block;
+                visibility: hidden;
+                height: 0px;
+            }
+            body.no-header .pagetitle {
+                display: none !important;
+            }
+            html body.no-nav-left .content-complete .nav-left,
+            html body.no-nav-left .content-complete .wui-separator {
+                display: none;
+            }
+
+            /* Layout */
+            .wui-layout-row {
+                border-collapse: collapse;
+                display: table;
+                border-spacing: 0;
+                table-layout: auto;
+                width: 100%;
+            }
+            .wui-column {
+                display: table-cell;
+                vertical-align: top;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            .wui-column-only,
+            .wui-column-first {
+                padding-left: 0;
+            }
+            .wui-column-only,
+            .wui-column-last {
+                padding-right: 0;
+            }
+            .column-w33 {
+                width: 33.333%;
+            }
+            .column-w50 {
+                width: 50%;
+            }
+            .column-w66 {
+                width: 66.667%;
+            }
+            /* content */
+            .content-area .content .wui-container-title {
+                color: #494949;
+                font-size: 15px;
+                font-family: BMWGroupTNCondensedProTT-Bold;
+
+                background-color: transparent;
+                border-bottom: 0 none;
+                margin: 0;
+                padding: 3px 0;
+                min-height: 24px;
+
+            }
+            .fontfamily {
+                font-size: 13px;
+
+                line-height: 18px;
+                color: #494949;
+                font-family: BMWGroupTNTT-Bold;
+
+
+            }
+            .content-area .content .wui-container-content {
+                padding: 0;
+                overflow: hidden;
+                margin-top: 11px;
+                margin-bottom: 7px;
+                font-family: BMWGroupTNTT-Regular;
+                font-size: 13px;
+                color: #494949;
+
+            }
+            /* media queries */
+            @media (max-width: 719px) {
+                .page-wrap {
+                    min-width: 480px;
+                }
+                body .wui-column {
+                    display: block;
+                    width: 100%;
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+            @media (max-width: 959px) {
+                .header-complete {
+                    height: 120px;
+                }
+                .header-complete:after{
+                    content: " ";
+                    display: block;
+                    height: 5px;
+                    background-color: #d6d6d6;
+                    min-width: 454px;
+                    margin: 63px 13px 0 13px;
+                }
+                .no-header .header-complete:after{
+                    margin: 0;
+                }
+                body.no-header .header-complete {
+                    height: 30px;
+                }
+                body.no-header .header-top {
+                    height: 25px;
+                    margin: 0;
+                    background: 0 none;
+                }
+                body.no-header .nav-meta-menu-item {
+                    display: none;
+                }
+                body.no-header .nav-meta-menu-item.menu {
+                    display: block;
+                }
+                body.no-header .nav-meta-menu-item.menu:before {
+                    content: none;
+                }
+                body.no-header .content-complete {
+                    padding-top: 66px !important;
+                }
+                .content-complete {
+                    padding-top: 156px;
+                }
+                .header-top {
+                    min-width: 454px;
+                }
+                .nav-top {
+                    display: none;
+                }
+                .nav-left {
+                    display: none;
+                }
+                .wui-separator {
+                    display: none;
+                }
+                .content-area {
+                    margin-left: 13px;
+                    min-width: initial;
+                    display: block;
+                    border-left: 0 none;
+                }
+                .no-header .content-area {
+                    margin-left: 0;
+                    border-left: 0 none;
+                }
+                .nav-meta .logout {
+                    display: none;
+                }
+                .pagetitle {
+                    top: 52px;
+                    left: 0;
+                }
+            }
+
+            @media (min-width: 960px) {
+                body.no-header .header-complete {
+                    height: 30px;
+                }
+                body.no-header .header-top {
+                    display: none !important;
+                }
+                body.no-header .content-complete {
+                    padding-top: 66px !important;
+                }
+                .content-complete {
+                    padding-top: 156px;
+                }
+                .nav-top {
+                    display: block;
+                }
+                .nav-left {
+                    display: block;
+                }
+                .wui-separator {
+                    margin-left: 233px;
+                    display: block;
+                }
+                .no-header .wui-separator {
+                    margin-left: 220px;
+                }
+                .content-area {
+                    margin-left: 233px;
+                    min-width: 701px;
+                    max-width: 1433px;
+                    padding-left: 12px;
+                    display: block;
+                    vertical-align: top;
+                    border-left: 1px solid #ececec;
+                }
+                .no-header .content-area {
+                    margin-left: 220px;
+                }
+                .nav-meta .menu {
+                    display: none;
+                }
+                .nav-resp {
+                    display: none !important;
+                }
+                body.no-nav-left .content-area {
+                    margin-left: 13px;
+                    padding-left: 0;
+                    min-width: initial;
+                    display: block;
+                    vertical-align: top;
+                    border-left: 0 none;
+                }
+                body.no-header.no-nav-left .content-area {
+                    margin-left: 0;
+                    border-left: 0 none;
+                }
+            }
+            /* CoMa specific content elements */
+            .wui-tabs {
+                display: block;
+                overflow: auto;
+                list-style: none;
+                padding-left: 0;
+                margin: 0;
+            }
+            .wui-tabs li {
+                float: left;
+                margin: 0 7px 0 0;
+                overflow: hidden;
+                display: block;
+            }
+            .wui-tabs li a {
+                height: 16px;
+                overflow: hidden;
+                padding: 0px 8px 3px 7px;
+                display: block;
+                text-decoration: none !important;
+                color: #666666;
+                position: relative;
+                text-align: center;
+            }
+            .wui-tabs li a:hover {
+                color: black;
+            }
+            .wui-tabs .wui-tab-header {
+                width: 24px;
+                height: 19px;
+                position: relative;
+                border: 1px solid #999999;
+                background-color: #f2f2f2;
+            }
+            .wui-tabs.variable-width .wui-tab-header {
+                width: auto;
+            }
+            .wui-tabs .ui-tabs-active .wui-tab-header,
+            .wui-tabs .ui-tabs-selected .wui-tab-header  {
+                background-color: white;
+                border-bottom: 1px solid white;
+            }
+            .wui-tabs .ui-tabs-active .wui-tab-header a,
+            .wui-tabs .ui-tabs-selected .wui-tab-header a,
+            .wui-tabs .ui-tabs-active .wui-tab-header a:visited,
+            .wui-tabs .ui-tabs-selected .wui-tab-header a:visited {
+                color: black;
+                cursor: default;
+            }
+            .wui-tabs .wui-tab-header-corner {
+                width: 0;
+                height: 0;
+                border-color: transparent white transparent transparent;
+                border-style: solid;
+                border-width: 0 7px 7px 0;
+                position: absolute;
+                right: -1px;
+                top: -1px;
+            }
+            .wui-tabs .wui-tab-header-corner-border {
+                width: 18px;
+                border: 0 solid #999999;
+                border-top-width: 1px;
+                transform: translate(2px) rotate(45deg);
+                position: absolute;
+                right: -1px;
+                top: -1px;
+            }
+            .wui-tab-content-container {
+                background-color: white;
+                float: left;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+            .wui-tab-content-container .wui-tab-content {
+                line-height: 18px;
+                margin: -1px 0 7px;
+                border: 1px solid #999999;
+                padding: 6px 7px 7px;
+                overflow: hidden;
+                clear: both;
+            }
+            .wui-tab-content-container .wui-tag-text {
+                width: 85%;
+            }
+            .wui-tab-content-container .wui-tag {
+                width: 15%;
+            }
+
+        </style>
+
+	</head>
+	<body>
+		<div class="page-wrap">
+			<header class="header-complete">
+				<header class="header-top">
+					<nav class="nav-meta">
+						<ul class="nav-meta-menu">
+                            <li class="nav-meta-menu-item settings">
+								<a href="/settings" title="Settings"></a>
+							</li>
+							<li class="nav-meta-menu-item logout">
+								<a href="/auth/logout" title="Logout (User Name)"></a>
+							</li>
+                            <li class="nav-meta-menu-item menu">
+								<a href="#" class="dropdown-trigger"></a>
+								<nav class="nav-resp dropdown" style="display: none;">
+									<ul class="open">
+										<li class="has-children">
+											<a href="/test" class="nav-link">Тесты</a>
+											<a href="#" class="nav-button"></a>
+											<ul>
+                                                <li class="">
+                                                    <a href="/started-tests" class="nav-link">Начатые тесты</a>
+                                                </li>
+                                                @can('coach')
+                                                <li class="">
+                                                    <a href="/test" class="nav-link">Все тесты</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="/test/send" class="nav-link">Отправить тест</a>
+                                                </li>
+                                                @endcan
+                                            </ul>
+                                        </li>
+                                        @can('admin')
+                                        <li class="has-children">
+                                            <a href="/admin" class="nav-link">Администрирование</a>
+                                            <a href="#" class="nav-button"></a>
+                                            <ul>
+                                                <li class="">
+                                                    <a href="/admin" class="nav-link">Создать пользователя</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="" class="nav-link">Создать тест</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        @endcan
+										<li class="first-layer">
+											<a href="/auth/logout">Выйти</a>
+										</li>
+									</ul>
+								</nav>
+							</li>
+						</ul>
+					</nav>
+					<span class="pagetitle">BMW Project</span>
+				</header>
+				<nav class="nav-top">
+					<ul>
+						<li class="active">
+							<a href="/">Examples</a>
+						</li>
+						<li class="last"></li>
+					</ul>
+				</nav>
+			</header>
+			<div class="content-complete">
+            <nav class="nav-left">
+					<ul class="open">
+
+						<li class="has-children">
+							<a href="/test" class="nav-link">Тесты</a>
+							<a href="#" class="nav-button"></a>
+							<ul>
+                                <li class="">
+                                    <a href="/my-tests" class="nav-link">Мои тесты</a>
+                                </li>
+                                <li class="">
+                                    <a href="/started-tests" class="nav-link">Начатые тесты</a>
+                                </li>
+                        @can('coach')
+								<li class="">
+									<a href="/test" class="nav-link">Все тесты</a>
+								</li>
+                                <li class="">
+									<a href="/process-tests" class="nav-link">Тесты в процессе</a>
+								</li>
+                                <li class="">
+									<a href="/test/send" class="nav-link">Отправить тест</a>
+								</li>
+                        @endcan
+							</ul>
+						</li>
+
+                        @can('coach')
+                        <li class="has-children">
+							<a href="/links" class="nav-link">Ссылки</a>
+							<a href="#" class="nav-button"></a>
+							<ul>
+                                <li class="">
+									<a href="/links" class="nav-link">Активные ссылки</a>
+								</li>
+								<li class="">
+									<a href="/links/create" class="nav-link">Создать ссылку</a>
+								</li>
+							</ul>
+						</li>
+                        @endcan
+                        @can('admin')
+						<li class="has-children">
+							<a href="/admin" class="nav-link">Администрирование</a>
+							<a href="#" class="nav-button"></a>
+							<ul>
+								<li class="">
+									<a href="/admin" class="nav-link">Создать пользователя</a>
+								</li>
+								<li class="">
+									<a href="/admin/test" class="nav-link">Создать тест</a>
+								</li>
+							</ul>
+						</li>
+                        @endcan
+						<!-- <li class="has-children">
+							<a href="content.html" class="nav-link">Content</a>
+							<a href="#" class="nav-button"></a>
+							<ul>
+								<li class="">
+									<a href="tabs.html" class="nav-link">Tabs</a>
+								</li>
+							</ul>
+						</li> -->
+					</ul>
+				</nav>
+				<div class="wui-separator"></div>
+                <div class="content-area">
+                    <div class="wui-layout-row">
+                        <div class="wui-column wui-column-only">
+                            <div class="container">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+					<footer>
+						<br>
+						<span classs="footer-copyright">&copy; Copyright 2023 BMW Group</span>
+					</footer>
+				</div>
+			</div>
+		</div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+	</body>
+</html>
